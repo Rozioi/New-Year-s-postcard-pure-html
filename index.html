@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Новым Годом!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h1 {
+            font-size: 3em;
+            margin: 0;
+            letter-spacing: 2px;
+            color: #ffe600;
+            text-shadow: 0 3px 8px rgba(255, 230, 0, 0.7);
+        }
+
+        .card p {
+            font-size: 1.3em;
+            margin: 15px 0 0;
+            color: #fff;
+        }
+
+        .sparkles {
+            margin-top: 20px;
+            font-size: 2em;
+        }
+
+        .sparkles span {
+            animation: sparkle 1.5s infinite;
+        }
+
+        .sparkles span:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .sparkles span:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            opacity: 0.8;
+            animation: fall 10s linear infinite;
+        }
+
+        .snowflake:nth-child(odd) {
+            animation-duration: 8s;
+        }
+
+        .snowflake:nth-child(even) {
+            animation-duration: 12s;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100px) translateY(100vh);
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            .card {
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            .card h1 {
+                font-size: 2.5em;
+            }
+
+            .card p {
+                font-size: 1.1em;
+            }
+
+            .sparkles {
+                font-size: 1.5em;
+            }
+        }
+
+        .garland {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .wire {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: none;
+            pointer-events: none;
+        }
+
+        .wire svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #ddd;
+            stroke-width: 2;
+        }
+
+        .bulb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            animation: blink 2s infinite;
+            position: relative;
+        }
+
+        .bulb:nth-child(2) {
+            background-color: yellow;
+            animation-delay: 0.5s;
+        }
+
+        .bulb:nth-child(3) {
+            background-color: green;
+            animation-delay: 1s;
+        }
+
+        .bulb:nth-child(4) {
+            background-color: blue;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wire">
+    <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+        <path d="M0,10 Q25,-10 50,10 T100,10" />
+    </svg>
+</div>
+<div class="garland">
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+    <div class="bulb"></div>
+</div>
+<div class="card">
+    <h1>🎄 С Новым Годом! 🎄</h1>
+    <p>Пусть этот год принесёт счастье, здоровье и успех!</p>
+    <div class="sparkles">
+        <span>✨</span><span>✨</span><span>✨</span>
+    </div>
+</div>
+<script>
+    const snowContainer = document.body;
+
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.textContent = '❄';
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+        snowflake.style.animationDuration = Math.random() * 3 + 8 + 's';
+        snowContainer.appendChild(snowflake);
+
+        setTimeout(() => {
+            snowflake.remove();
+        }, 10000);
+    }
+
+    setInterval(createSnowflake, 150);
+</script>
+</body>
+</html>
